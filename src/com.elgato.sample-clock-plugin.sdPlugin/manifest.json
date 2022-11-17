@@ -1,0 +1,55 @@
+{
+    "Actions": [
+        {
+            "Icon": "action/images/actionimage",
+            "Name": "Sample Clock",
+            "States": [
+                {
+                    "Image": "action/images/image"
+                }
+            ],
+            "Controllers": [
+                "Keypad",
+                "Encoder"
+            ],
+            "Encoder": {
+                "layout": "$A1",
+                "Icon": "action/images/dialstack_background.svg",
+                "StackColor": "#0000FF",
+                "TriggerDescription": {
+                    "Rotate": "Unused",
+                    "Push": "show/hide seconds",
+                    "Touch": "show/hide seconds",
+                    "LongTouch": "Unused"
+                }
+            },
+            "SupportedInMultiActions": false,
+            "Tooltip": "Show a nice clock",
+            "UUID": "com.elgato.sample-clock.action"
+        }
+    ],
+    "SDKVersion": 2,
+    "Author": "Elgato",
+    "CodePath": "index.html",
+    "PropertyInspectorPath": "actions/property-inspector/inspector.html",
+    "Description": "Always be on time.",
+    "Category": "Clocks",
+    "CategoryIcon": "category-clocks",
+    "Name": "Clocks",
+    "Icon": "pluginIcon",
+    "URL": "https://www.elgato.com/gaming/stream-deck",
+    "Version": "0.1.0.02",
+    "OS": [
+        {
+            "Platform": "mac",
+            "MinimumVersion": "10.11"
+        },
+        {
+            "Platform": "windows",
+            "MinimumVersion": "10"
+        }
+    ],
+    "Software": {
+        "MinimumVersion": "6"
+    }
+}

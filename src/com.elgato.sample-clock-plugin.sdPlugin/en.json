@@ -1,0 +1,12 @@
+{
+	"Description": "Create a sample clock.", 
+	"Name": "Sample Clock",
+	"Category": "Clocks",
+	"com.elgato.sample-clock.action": {
+		"Name": "Sample Clock",
+		"Tooltip": "Create a tiny clock."
+	},
+	"Localization": {
+		"Weekday": "Weekday"
+	}
+}
