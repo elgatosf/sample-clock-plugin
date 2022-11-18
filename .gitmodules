@@ -1,3 +1,0 @@
-[submodule "src/com.elgato.sample-test-cors-plugin.sdPlugin/libs"]
-	path = src/com.elgato.sample-test-cors-plugin.sdPlugin/libs
-	url = ../streamdeck-javascript-sdk.git
