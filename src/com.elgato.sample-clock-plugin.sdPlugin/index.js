@@ -51,9 +51,13 @@ class SampleClockAction {
             short: {hour: '2-digit', minute: '2-digit'},
             long: {hour: '2-digit', minute: '2-digit', second: '2-digit'}
         };
+        this.dateOptions = {
+            short: {weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'},
+            long: {weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'}
+        };
         this.size = 48; // default size of the icon is 48
         this.color = '#EFEFEF';
-        this.init()
+        this.init();
         this.update();
     }
 
@@ -74,7 +78,7 @@ class SampleClockAction {
         const icon = `data:image/svg+xml;base64,${btoa(svg)}`;
         if(this.isEncoder) {
             const payload = {
-                'title': o.weekday,
+                'title': o.date,
                 'value': o.time,
                 icon
             };
@@ -88,11 +92,13 @@ class SampleClockAction {
         const minutes = date.getMinutes();
         const seconds = date.getSeconds();
         const opts = this.showSeconds ? this.timeOptions.long : this.timeOptions.short;
+        const dateOpts = this.showSeconds ? this.dateOptions.long : this.dateOptions.short;
         return {
             minDeg: (minutes + seconds / 60) * 6,
             secDeg: seconds * 6,
             hourDeg: ((hours % 12) + minutes / 60) * 360 / 12,
             time: date.toLocaleTimeString([], opts),
+            date: date.toLocaleDateString([], dateOpts),
             weekday: date.toLocaleDateString([], {weekday: 'long'})
         };
     }
@@ -100,23 +106,23 @@ class SampleClockAction {
     makeSvg(o) {
         const w = this.size;
         const r = w / 2;
-        const lineStart = w/20;
-        const lineLength = w/8;
+        const lineStart = w / 20;
+        const lineLength = w / 8;
         const sizes = {
             hours: w / 4.5,
-            minutes: w/9,
-            seconds: w/36
+            minutes: w / 9,
+            seconds: w / 36
 
         };
         const strokes = {
-            hours: w/30,
-            minutes: w/36,
-            seconds: w/48,
-            center: w/24
+            hours: w / 30,
+            minutes: w / 36,
+            seconds: w / 48,
+            center: w / 24
         };
         // create ticks only once
         if(!this.ticks.length) {
-            const line = `x1="${r}" y1="${lineStart}" x2="${r}" y2="${lineStart+lineLength}"`;
+            const line = `x1="${r}" y1="${lineStart}" x2="${r}" y2="${lineStart + lineLength}"`;
             const ticks = () => {
                 let str = `<g id="ticks" stroke-width="${sizes.seconds}" stroke="${this.color}">`;
                 for(let i = 0;i < 12;i++) {
