@@ -9,7 +9,7 @@ const MACTIONS = {};
 const sampleClockAction = new Action('com.elgato.sample-clock.action');
 
 sampleClockAction.onWillAppear(({context, payload}) => {
-    // console.log('will appear', context, payload, device);
+    // console.log('will appear', context, payload);
     MACTIONS[context] = new SampleClockAction(context, payload);
 });
 
