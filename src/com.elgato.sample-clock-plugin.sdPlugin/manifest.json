@@ -31,14 +31,14 @@
     "SDKVersion": 2,
     "Author": "Elgato",
     "CodePath": "index.html",
-    "PropertyInspectorPath": "actions/property-inspector/inspector.html",
+    "PropertyInspectorPath": "action/property-inspector/inspector.html",
     "Description": "Always be on time.",
     "Category": "Clocks",
     "CategoryIcon": "category-clocks",
     "Name": "Clocks",
     "Icon": "pluginIcon",
     "URL": "https://www.elgato.com/gaming/stream-deck",
-    "Version": "0.1.0.02",
+    "Version": "0.1.1.03",
     "OS": [
         {
             "Platform": "mac",
