@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Sample Clock PI</title>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="../../libs/css/sdpi.css">
+</head>
+
+<body>
+    <div class="sdpi-wrapper hidden">
+        <div class="sdpi-item" id="multi-items">
+            <div class="sdpi-item-label">Settings</div>
+            <div class="sdpi-item-value flex">
+                <div class="sdpi-item-child">
+                    <input id="showTicks" type="checkbox">
+                    <label for="showTicks" class="sdpi-item-label">
+                        <span></span>Show Ticks
+                    </label>
+                </div>
+                <div class="sdpi-item-child">
+                    <input id="hour12" type="checkbox">
+                    <label for="hour12" class="sdpi-item-label">
+                        <span></span>AM/PM
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../libs/js/constants.js"></script>
+    <script src="../../libs/js/events.js"></script>
+    <script src="../../libs/js/api.js"></script>
+    <script src="../../libs/js/property-inspector.js"></script>
+    <script src="../../libs/js/dynamic-styles.js"></script>
+
+    <script>
+        let MSETTINGS = {
+            showTicks: true
+        };        
+     
+        $PI.on('connected', (jsn) => {
+            MSETTINGS = jsn?.actionInfo?.payload?.settings || {};
+
+            const showTicksEl = document.getElementById('showTicks');
+            if(showTicksEl) {
+                showTicksEl.checked = MSETTINGS.showTicks === true;
+                showTicksEl.onchange = () => {
+                    MSETTINGS.showTicks = showTicksEl.checked;
+                    $PI.setSettings(MSETTINGS);
+                };
+            }
+
+            const hours12El = document.getElementById('hour12');
+            if(hours12El) {
+                hours12El.checked = MSETTINGS.hour12 === true;
+                hours12El.onchange = () => {
+                    MSETTINGS.hour12 = hours12El.checked;
+                    $PI.setSettings(MSETTINGS);
+                };
+            }
+      
+            // Finally show the UI
+            document.querySelector('.sdpi-wrapper').classList.remove('hidden');
+        });
+        document.querySelector('.sdpi-wrapper').classList.remove('hidden');
+
+    </script>
+</body>
+</html>
