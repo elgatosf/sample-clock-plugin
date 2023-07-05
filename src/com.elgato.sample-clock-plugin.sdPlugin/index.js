@@ -30,10 +30,21 @@ sampleClockAction.onTitleParametersDidChange(({context, payload}) => {
     MACTIONS[context].ticks = ''; // trigger re-rendering of ticks
 });
 
-sampleClockAction.onDialPress(({context, payload}) => {
-    // console.log('dial was pressed', context, payload);
-    if(payload.pressed === false) {
-        MACTIONS[context].toggleSeconds();
+$SD.onConnected(jsn => {
+    const [version, major] = jsn.appInfo.application.version.split(".").map(e => parseInt(e, 10));
+    const hasDialPress = version == 6 && major < 4;
+    if(hasDialPress) {
+        sampleClockAction.onDialPress(({context, payload}) => {
+            // console.log('dial was pressed', context, payload);
+            if(payload.pressed === false) {
+                MACTIONS[context].toggleSeconds();
+            }
+        });
+    } else {
+        sampleClockAction.onDialUp(({context, payload}) => {
+            console.log('onDialUp', context, payload);
+                MACTIONS[context].toggleSeconds();
+        });
     }
 });
 
